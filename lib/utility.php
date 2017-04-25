@@ -9,7 +9,7 @@ class Utility {
 
     static public function useCache($cacheId, $func, $time = self::CACHE_TIME) {
         $obCache = new \CPHPCache;
-        $cacheId = 'data.layer:' . $time . ':' . (is_array($cacheId) ? implode(':', $cacheId) : $cacheId);
+        $cacheId = 'project.core:' . $time . ':' . (is_array($cacheId) ? implode(':', $cacheId) : $cacheId);
         if (Config::IS_CACHE and $obCache->InitCache($time, $cacheId, self::CACHE_DIR)) {
             $arResult = $obCache->GetVars();
         } elseif ($obCache->StartDataCache()) {
