@@ -2,19 +2,24 @@
 
 namespace Project\Core;
 
+use Bitrix\Main\Data\Cache;
+
 class Utility {
 
     const CACHE_TIME = 3600;
     const CACHE_DIR = '/project.core/';
 
     static public function useCache($cacheId, $func, $time = self::CACHE_TIME) {
-        $obCache = new \CPHPCache;
+        if (Config::IS_CACHE) {
+            return $func();
+        }
         $cacheId = 'project.core:' . $time . ':' . (is_array($cacheId) ? implode(':', $cacheId) : $cacheId);
-        if (Config::IS_CACHE and $obCache->InitCache($time, $cacheId, self::CACHE_DIR)) {
-            $arResult = $obCache->GetVars();
-        } elseif ($obCache->StartDataCache()) {
+        $cache = Cache::createInstance();
+        if ($cache->initCache($time, $cacheId, self::CACHE_DIR)) {
+            $arResult = $cache->getVars();
+        } elseif ($cache->startDataCache()) {
             $arResult = $func();
-            $obCache->EndDataCache($arResult);
+            $cache->endDataCache($arResult);
         }
         return $arResult;
     }

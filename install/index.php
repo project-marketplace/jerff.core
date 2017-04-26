@@ -59,6 +59,7 @@ class project_core extends CModule {
 
     public function dropTable() {
         $this->GetConnection()->query("DROP TABLE IF EXISTS " . FavoritesTable::getTableName() . ";");
+        $this->GetConnection()->query("DROP TABLE IF EXISTS " . RedirectTable::getTableName() . ";");
     }
 
     protected function GetConnection() {

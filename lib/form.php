@@ -27,9 +27,12 @@ class Form {
                 }
             }
             $CFormResult = new CFormResult;
-            $RESULT_ID = $CFormResult->Add($FORM_ID, $formData);
+            $RESULT_ID = $CFormResult->Add($FORM_ID, $formData, 'N');
             if ($RESULT_ID) {
-                CFormResult::Update($RESULT_ID, $formData, 'Y');
+                CFormResult::Update($RESULT_ID, $formData, 'Y', 'N');
+                CFormCRM::onResultAdded($FORM_ID, $RESULT_ID);
+                CFormResult::SetEvent($RESULT_ID);
+                CFormResult::Mail($RESULT_ID);
             } else {
                 global $strError;
             }
