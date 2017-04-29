@@ -3,6 +3,11 @@
 define('IS_DEBUG_FILE', $_SERVER["DOCUMENT_ROOT"] . '/test/debug.txt');
 define('IS_DEBUG_PAY_FILE', $_SERVER["DOCUMENT_ROOT"] . '/test/pay.txt');
 
+//AddEventHandler("main", "OnBeforeLocalRedirect", function(&$url, $skip_security_check, $bExternal) {
+//    preExit(func_get_args());
+//});
+
+
 function isDebug() {
 //    return false;
     return true;

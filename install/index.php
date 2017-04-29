@@ -2,6 +2,7 @@
 
 use Bitrix\Main\Application,
     Bitrix\Main\ModuleManager,
+    Bitrix\Main\EventManager,
     Bitrix\Main\Localization\Loc,
     Bitrix\Main\Loader,
     Project\Core\Model\FavoritesTable,
@@ -31,12 +32,12 @@ class project_core extends CModule {
 
     public function DoInstall() {
         ModuleManager::registerModule($this->MODULE_ID);
-        $eventManager = Bitrix\Main\EventManager::getInstance();
+        $eventManager = EventManager::getInstance();
         Loader::includeModule($this->MODULE_ID);
 
         $eventManager = Bitrix\Main\EventManager::getInstance();
         $eventManager->registerEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Redirect', 'OnPageStart');
-        
+
         $this->GetConnection()->query("CREATE TABLE IF NOT EXISTS " . FavoritesTable::getTableName() . " (
             ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             TYPE VARCHAR(255),
@@ -47,6 +48,7 @@ class project_core extends CModule {
             ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             URL VARCHAR(1000),
             TYPE VARCHAR(255),
+            NEW_URL VARCHAR(255),
             ELEMENT INT,
             PARAM1 INT
         );");
@@ -54,12 +56,15 @@ class project_core extends CModule {
 
     public function DoUninstall() {
         Loader::includeModule($this->MODULE_ID);
+
+        $eventManager = EventManager::getInstance();
+        $eventManager->unRegisterEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Redirect', 'OnPageStart');
+
         ModuleManager::unRegisterModule($this->MODULE_ID);
     }
 
     public function dropTable() {
         $this->GetConnection()->query("DROP TABLE IF EXISTS " . FavoritesTable::getTableName() . ";");
-        $this->GetConnection()->query("DROP TABLE IF EXISTS " . RedirectTable::getTableName() . ";");
     }
 
     protected function GetConnection() {

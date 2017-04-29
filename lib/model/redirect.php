@@ -19,6 +19,7 @@ class RedirectTable extends DataManager {
                     )),
             new Main\Entity\StringField('URL'),
             new Main\Entity\StringField('TYPE'),
+            new Main\Entity\StringField('NEW_URL'),
             new Main\Entity\IntegerField('ELEMENT'),
             new Main\Entity\IntegerField('PARAM1')
         );
