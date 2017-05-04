@@ -6,11 +6,13 @@ use Bitrix\Main\Application;
 
 class Sort {
 
-    static public function init($name, $map) {
+    static public function init($name, $map, $default = '') {
         global $APPLICATION;
         $request = Application::getInstance()->getContext()->getRequest();
         $item = $request->get($name);
-        $default = key($map);
+        if(empty($default)) {
+            $default = key($map);
+        }
         if (!isset($map[$item])) {
             $item = $default;
         }
