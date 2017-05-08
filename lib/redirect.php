@@ -13,7 +13,13 @@ class Redirect {
                     'filter' => array('URL' => $url)
         ));
         $rsData = new CDBResult($rsData);
-        if (!$arItem = $rsData->Fetch()) {
+        if ($arItem = $rsData->Fetch()) {
+            $arBxData = array(
+                'ELEMENT' => $id,
+                'PARAM1' => $param1
+            );
+            RedirectTable::update($arItem['ID'], $arBxData);
+        } else {
             $arBxData = array(
                 'URL' => $url,
                 'TYPE' => $type,
