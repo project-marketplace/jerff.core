@@ -9,6 +9,10 @@ class Utility {
     const CACHE_TIME = 3600;
     const CACHE_DIR = '/project.core/';
 
+    static public function startComposer() {
+        require $_SERVER["DOCUMENT_ROOT"] . '/local/vendor/autoload.php';
+    }
+
     static public function useCache($cacheId, $func, $time = self::CACHE_TIME) {
         if (Config::IS_CACHE) {
             return $func();

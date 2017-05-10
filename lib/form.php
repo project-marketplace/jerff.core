@@ -7,7 +7,8 @@ use Bitrix\Main\Loader,
     CFormAnswer,
     CFormResult,
     CFormStatus,
-    CForm;
+    CForm,
+    CFormCRM;
 
 class Form {
 
