@@ -35,7 +35,7 @@ class project_core extends CModule {
         $eventManager = EventManager::getInstance();
         Loader::includeModule($this->MODULE_ID);
 
-        $eventManager = Bitrix\Main\EventManager::getInstance();
+        $eventManager = EventManager::getInstance();
         $eventManager->registerEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Redirect', 'OnPageStart');
 
         $this->GetConnection()->query("CREATE TABLE IF NOT EXISTS " . FavoritesTable::getTableName() . " (

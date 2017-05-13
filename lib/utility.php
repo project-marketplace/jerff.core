@@ -7,6 +7,7 @@ use Bitrix\Main\Data\Cache;
 class Utility {
 
     const CACHE_TIME = 3600;
+    const CACHE_MINUTE = 60;
     const CACHE_DIR = '/project.core/';
 
     static public function startComposer() {
