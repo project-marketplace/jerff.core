@@ -18,7 +18,6 @@ class project_core extends CModule {
         $arModuleVersion = array();
 
         include(__DIR__ . '/version.php');
-
         if (is_array($arModuleVersion) && array_key_exists('VERSION', $arModuleVersion)) {
             $this->MODULE_VERSION = $arModuleVersion['VERSION'];
             $this->MODULE_VERSION_DATE = $arModuleVersion['VERSION_DATE'];
@@ -32,43 +31,70 @@ class project_core extends CModule {
 
     public function DoInstall() {
         ModuleManager::registerModule($this->MODULE_ID);
-        $eventManager = EventManager::getInstance();
         Loader::includeModule($this->MODULE_ID);
+        $this->InstallDB();
+        $this->InstallEvent();
+        $this->InstallFiles();
+    }
 
-        $eventManager = EventManager::getInstance();
-        $eventManager->registerEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Redirect', 'OnPageStart');
+    public function DoUninstall() {
+        Loader::includeModule($this->MODULE_ID);
+        $this->UnInstallDB();
+        $this->UnInstallEvent();
+        $this->UnInstallFiles();
+        ModuleManager::unRegisterModule($this->MODULE_ID);
+    }
 
-        $this->GetConnection()->query("CREATE TABLE IF NOT EXISTS " . FavoritesTable::getTableName() . " (
+    /*
+     * InstallDB
+     */
+
+    public function InstallDB() {
+        Application::getInstance()->getConnection(FavoritesTable::getConnectionName())->query('CREATE TABLE IF NOT EXISTS ' . FavoritesTable::getTableName() . ' (
             ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             TYPE VARCHAR(255),
             ELEMENT_ID INT,
             USER_ID INT
-        );");
-        $this->GetConnection()->query("CREATE TABLE IF NOT EXISTS " . RedirectTable::getTableName() . " (
+        );');
+        Application::getInstance()->getConnection(RedirectTable::getConnectionName())->query('CREATE TABLE IF NOT EXISTS ' . RedirectTable::getTableName() . ' (
             ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             URL VARCHAR(1000),
             TYPE VARCHAR(255),
             NEW_URL VARCHAR(255),
             ELEMENT INT,
             PARAM1 INT
-        );");
+        );');
     }
 
-    public function DoUninstall() {
-        Loader::includeModule($this->MODULE_ID);
+    public function UnInstallDB() {
+//        Application::getInstance()->getConnection(FavoritesTable::getConnectionName())->query('DROP TABLE IF EXISTS ' . FavoritesTable::getTableName() . ';');
+//        Application::getInstance()->getConnection(RedirectTable::getConnectionName())->query('DROP TABLE IF EXISTS ' . RedirectTable::getTableName() . ';');
+    }
 
+    /*
+     * InstallEvent
+     */
+
+    public function InstallEvent() {
+        $eventManager = EventManager::getInstance();
+        $eventManager->registerEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Redirect', 'OnPageStart');
+    }
+
+    public function UnInstallEvent() {
         $eventManager = EventManager::getInstance();
         $eventManager->unRegisterEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Redirect', 'OnPageStart');
-
-        ModuleManager::unRegisterModule($this->MODULE_ID);
     }
 
-    public function dropTable() {
-        $this->GetConnection()->query("DROP TABLE IF EXISTS " . FavoritesTable::getTableName() . ";");
+    /*
+     * InstallFiles
+     */
+
+    public function InstallFiles($arParams = array()) {
+        CopyDirFiles($_SERVER['DOCUMENT_ROOT'] . '/local/modules/' . $this->MODULE_ID . '/install/themes/.default/', $_SERVER['DOCUMENT_ROOT'] . '/local/themes/.default/' . $this->MODULE_ID . '/', true, true);
     }
 
-    protected function GetConnection() {
-        return Application::getInstance()->getConnection(FavoritesTable::getConnectionName());
+    public function UnInstallFiles() {
+        DeleteDirFiles($_SERVER['DOCUMENT_ROOT'] . '/local/modules/' . $this->MODULE_ID . '/install/themes/.default/', $_SERVER['DOCUMENT_ROOT'] . '/local/themes/.default/' . $this->MODULE_ID . '/'); //css
     }
 
 }
