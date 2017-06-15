@@ -15,7 +15,7 @@ class Utility {
     }
 
     static public function useCache($cacheId, $func, $time = self::CACHE_TIME) {
-        if (Config::IS_CACHE) {
+        if (!Config::IS_CACHE) {
             return $func();
         }
         $cacheId = 'project.core:' . $time . ':' . (is_array($cacheId) ? implode(':', $cacheId) : $cacheId);
