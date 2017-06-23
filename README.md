@@ -17,15 +17,22 @@ if (Bitrix\Main\Loader::includeModule('project.core')) {
         'COMMENT' => 'Комментарий'
     ));
 }
+```
 
 Ресайтинг фото
+
+```
+#!php
 if (Bitrix\Main\Loader::includeModule('project.core')) {
     $item['SRC'] = Project\Core\Image::resize($item['ID'], 200, 200);
 }; 
-Кеширование данных
-if (Bitrix\Main\Loader::includeMo
 ```
-dule('project.core')) {
+
+Кеширование данных
+
+```
+#!php
+if (Bitrix\Main\Loader::includeModule('project.core')) {
     Project\Core\Utility::useCache(array('game', $gameId), function() use($gameId) {
         $arSelect = Array("ID", "NAME", 'PROPERTY_SELLER');
         $arFilter = Array("IBLOCK_ID" => Game\Config::DZHO_IBLOCK, "ID" => $gameId);
@@ -44,3 +51,4 @@ dule('project.core')) {
         return false;
     });
 }
+```
