@@ -6,8 +6,10 @@ use Bitrix\Main\Data\Cache;
 
 class Utility {
 
+    const IS_DEBUG = false;
     const CACHE_DAY = 86400;
-    const CACHE_TIME = 3600;
+    const CACHE_HOUR = 3600;
+    const CACHE_TIME = self::CACHE_HOUR;
     const CACHE_MINUTE = 60;
     const CACHE_DIR = '/project.core/';
 
@@ -22,19 +24,27 @@ class Utility {
         $cacheId = 'project.core:' . $time . ':' . (is_array($cacheId) ? implode(':', $cacheId) : $cacheId);
         $cache = Cache::createInstance();
         if ($cache->initCache($time, $cacheId, self::CACHE_DIR)) {
-//            pre('get');
+            if (self::IS_DEBUG) {
+                pre('get');
+            }
             $arResult = $cache->getVars();
         } elseif ($cache->startDataCache()) {
             $arResult = $func();
             if (empty($arResult)) {
-//                pre('abortDataCache');
+                if (self::IS_DEBUG) {
+                    pre('abortDataCache');
+                }
                 $cache->abortDataCache();
             } else {
-//                pre('set');
+                if (self::IS_DEBUG) {
+                    pre('set');
+                }
             }
             $cache->endDataCache($arResult);
         }
-//        pre($cacheId, $arResult);
+        if (self::IS_DEBUG) {
+            pre($cacheId, $arResult);
+        }
         return $arResult;
     }
 

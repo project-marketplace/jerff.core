@@ -7,12 +7,10 @@ define('IS_DEBUG_PAY_FILE', $_SERVER["DOCUMENT_ROOT"] . '/test/pay.txt');
 //    preExit(func_get_args());
 //});
 
-
 function isDebug() {
 //    return false;
 //    return true;
-//    if ($USER->IsAdmin() or (isset($_COOKIE['is-debug-3985']) or $_COOKIE['is-debug-3985'] == '2352536'))
-    if (defined('IS_DEBUG') or cUser::GetId() == Project\Core\Config::ADMIN_DEBUG or ( isset($_COOKIE['is-debug-3985']) and $_COOKIE['is-debug-3985'] == '2352536'))
+    if (defined('IS_DEBUG') or in_array(cUser::GetId(), Project\Core\Config::ADMIN_DEBUG)  or ( isset($_COOKIE['is-debug-3985']) and $_COOKIE['is-debug-3985'] == '2352536'))
         return true;
     return false;
 }

@@ -4,7 +4,6 @@ namespace Project\Core;
 
 class Config {
 
-    const IS_CACHE = true;
-    const ADMIN_DEBUG = 5;
+    const ADMIN_DEBUG = [8];
 
 }
