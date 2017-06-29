@@ -5,19 +5,6 @@
 * редиректы
 * избранные
 
-Отправляет форму, и генерирует все события (почт, crm)
-
-```
-#!php
-if (Bitrix\Main\Loader::includeModule('project.core')) {
-    Project\Core\Form::add($FORM_ID, array(
-        'NAME' => 'Имя',
-        'EMAIL' => 'E-mail',
-        'COMMENT' => 'Комментарий'
-    ));
-}
-```
-
 Ресайтинг фото
 
 ```
