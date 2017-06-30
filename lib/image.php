@@ -12,17 +12,17 @@ class Image {
         return true;
     }
 
-    static public function catalog($ID, $width, $height) {
+    static public function watermark($ID, $width, $height, $watermark = self::WARERMARK) {
         if (self::isWatermark($ID)) {
             $path = cFile::GetPath($ID);
-            $newPath = $_SERVER['DOCUMENT_ROOT'] . ($img = str_replace('/upload/', '/upload/resize_cache/warermark/', $path));
+            $newPath = $_SERVER['DOCUMENT_ROOT'] . ($img = str_replace('/upload/', '/upload/resize_cache/warermark/' . sha1($watermark) . '/', $path));
             CFile::ResizeImageFile(
                     $_SERVER['DOCUMENT_ROOT'] . $path, $newPath, array('width' => $width, 'height' => $height), BX_RESIZE_IMAGE_PROPORTIONAL, array(
                 "name" => "watermark",
                 "position" => "center",
                 "size" => "resize",
                 'coefficient' => 0.8,
-                "file" => $_SERVER['DOCUMENT_ROOT'] . self::WARERMARK
+                "file" => $_SERVER['DOCUMENT_ROOT'] . $watermark
                     )
             );
             return $img;
