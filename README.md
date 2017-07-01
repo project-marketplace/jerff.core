@@ -1,8 +1,8 @@
 # Api для сайта #
 
 * отладка 
-* редиректы
-* избранные
+* кеширование
+* ресайтинг, ватермарки
 
 Ресайтинг фото
 
@@ -12,6 +12,18 @@ if (Bitrix\Main\Loader::includeModule('project.core')) {
     $item['SRC'] = Project\Core\Image::resize($item['ID'], 200, 200);
 }; 
 ```
+
+
+```
+#!php
+
+Ватермарки
+if (Bitrix\Main\Loader::includeModule('project.core')) {
+    $item['SRC'] = Project\Core\Image::watermark($item['ID'], 200, 200, '/images/warermark.png');
+};
+
+```
+
 
 Кеширование данных
 
