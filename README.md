@@ -4,7 +4,7 @@
 * кеширование
 * ресайтинг, ватермарки
 
-Ресайтинг фото
+### Ресайтинг фото ###
 
 ```
 #!php
@@ -13,11 +13,9 @@ if (Bitrix\Main\Loader::includeModule('project.core')) {
 }; 
 ```
 
-
+### Ватермарки ###
 ```
 #!php
-
-Ватермарки
 if (Bitrix\Main\Loader::includeModule('project.core')) {
     $item['SRC'] = Project\Core\Image::watermark($item['ID'], 200, 200, '/images/warermark.png');
 };
@@ -25,7 +23,7 @@ if (Bitrix\Main\Loader::includeModule('project.core')) {
 ```
 
 
-Кеширование данных
+### Кеширование данных ###
 
 ```
 #!php
