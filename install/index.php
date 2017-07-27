@@ -29,13 +29,11 @@ class project_core extends CModule {
         ModuleManager::registerModule($this->MODULE_ID);
         Loader::includeModule($this->MODULE_ID);
         $this->InstallEvent();
-        $this->InstallFiles();
     }
 
     public function DoUninstall() {
         Loader::includeModule($this->MODULE_ID);
         $this->UnInstallEvent();
-        $this->UnInstallFiles();
         ModuleManager::unRegisterModule($this->MODULE_ID);
     }
 
@@ -51,18 +49,6 @@ class project_core extends CModule {
     public function UnInstallEvent() {
         $eventManager = Bitrix\Main\EventManager::getInstance();
         $eventManager->unRegisterEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Page', 'OnPageStart');
-    }
-
-    /*
-     * InstallFiles
-     */
-
-    public function InstallFiles($arParams = array()) {
-        CopyDirFiles($_SERVER['DOCUMENT_ROOT'] . '/local/modules/' . $this->MODULE_ID . '/install/themes/.default/', $_SERVER['DOCUMENT_ROOT'] . '/local/themes/.default/' . $this->MODULE_ID . '/', true, true);
-    }
-
-    public function UnInstallFiles() {
-        DeleteDirFiles($_SERVER['DOCUMENT_ROOT'] . '/local/modules/' . $this->MODULE_ID . '/install/themes/.default/', $_SERVER['DOCUMENT_ROOT'] . '/local/themes/.default/' . $this->MODULE_ID . '/'); //css
     }
 
 }
