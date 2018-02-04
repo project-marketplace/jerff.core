@@ -5,15 +5,10 @@
 
 let gulp = require('gulp');
 let build = require('gulp-build-bitrix-modul')({
-    name: 'jerff.b24autotask',
+    name: 'project.core',
     tools: {
         'project.tools': ['Project', 'Tools']
-    },
-    encode: [
-        'include.php',
-        'project.tools/**/*.php',
-        '!project.tools/modules/install.php'
-    ]
+    }
 });
 
 // Сборка текущей версии модуля
@@ -26,4 +21,4 @@ gulp.task('last_version', build.last_version);
 gulp.task('build_update', build.update);
 
 // Дефолтная задача. Собирает все по очереди
-gulp.task('default', gulp.series('last_version', 'build_update'));
+gulp.task('default', gulp.series('release'));
