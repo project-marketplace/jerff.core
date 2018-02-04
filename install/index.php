@@ -1,40 +1,38 @@
 <?php
 
-use Bitrix\Main\ModuleManager,
-    Bitrix\Main\Localization\Loc,
-    Bitrix\Main\Loader;
+if (!defined('\Project\Tools\Modules\IS_START')) {
+    include_once(dirname(__DIR__) . '/project.tools/include.php');
+}
+
+use Bitrix\Main\Localization\Loc,
+    Project\Tools\Modules;
 
 IncludeModuleLangFile(__FILE__);
 
 class project_core extends CModule {
 
     public $MODULE_ID = 'project.core';
+    public $MODULE_NAME;
+    public $MODULE_DESCRIPTION;
+    public $MODULE_VERSION;
+    public $MODULE_VERSION_DATE;
+
+    use Modules\Install;
 
     function __construct() {
-        $arModuleVersion = array();
-
-        include(__DIR__ . '/version.php');
-        if (is_array($arModuleVersion) && array_key_exists('VERSION', $arModuleVersion)) {
-            $this->MODULE_VERSION = $arModuleVersion['VERSION'];
-            $this->MODULE_VERSION_DATE = $arModuleVersion['VERSION_DATE'];
-        }
-
+        $this->setParam(__DIR__, 'PROJECT_CORE');
         $this->MODULE_NAME = Loc::getMessage('PROJECT_CORE_NAME');
         $this->MODULE_DESCRIPTION = Loc::getMessage('PROJECT_CORE_DESCRIPTION');
         $this->PARTNER_NAME = Loc::getMessage('PROJECT_CORE_PARTNER_NAME');
-        $this->PARTNER_URI = '';
+        $this->PARTNER_URI = Loc::getMessage('PROJECT_CORE_PARTNER_URI');
     }
 
     public function DoInstall() {
-        ModuleManager::registerModule($this->MODULE_ID);
-        Loader::includeModule($this->MODULE_ID);
-        $this->InstallEvent();
+        $this->Install();
     }
 
     public function DoUninstall() {
-        Loader::includeModule($this->MODULE_ID);
-        $this->UnInstallEvent();
-        ModuleManager::unRegisterModule($this->MODULE_ID);
+        $this->Uninstall();
     }
 
     /*
@@ -42,13 +40,11 @@ class project_core extends CModule {
      */
 
     public function InstallEvent() {
-        $eventManager = Bitrix\Main\EventManager::getInstance();
-        $eventManager->registerEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Page', 'OnPageStart');
+        $this->registerEventHandler('main', 'OnPageStart', '\Project\Core\Event\Page', 'OnPageStart');
     }
 
     public function UnInstallEvent() {
-        $eventManager = Bitrix\Main\EventManager::getInstance();
-        $eventManager->unRegisterEventHandler('main', 'OnPageStart', $this->MODULE_ID, '\Project\Core\Event\Page', 'OnPageStart');
+        $this->unRegisterEventHandler('main', 'OnPageStart', '\Project\Core\Event\Page', 'OnPageStart');
     }
 
 }

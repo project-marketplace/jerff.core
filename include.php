@@ -1,5 +1,3 @@
 <?php
 
-use Bitrix\Main\Loader;
-
-include (__DIR__ . '/include/debug.php');
+include_once (__DIR__ . '/project.tools/include.php');

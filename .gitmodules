@@ -1,0 +1,3 @@
+[submodule "project.tools"]
+	path = project.tools
+	url = git@bitbucket.org:project-tm/project.tools.git
