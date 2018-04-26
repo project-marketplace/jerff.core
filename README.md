@@ -5,7 +5,7 @@
     - как заготовку для битрикс маркеплейс
 
 ## Сборка для маркеплейса
-- установить сборщик модуля на NodeJs `npm update --save`
+- установить сборщик модуля на NodeJs `npm install && npm install gulp-build-bitrix-modul --save`
 - используется модуль на galp 4 [gulp-build-bitrix-modul](https://www.npmjs.com/package/gulp-build-bitrix-modul)
 - `npm run build` - собирает всю сборку для маркеплейса
 - `npm run release` - собирает utf-8 и cp1251 архивы
@@ -32,3 +32,8 @@ use CCatalogDiscount,
 стало
 ```php
 namespace Project\Ver7348d5c7870f19b39d83f080ca9e708bbba1c3d2\Tools\Sale;
+
+use CCatalogDiscount,
+    Bitrix\Main\Loader,
+    Project\Ver7348d5c7870f19b39d83f080ca9e708bbba1c3d2\Tools\Utility\Cache;
+```

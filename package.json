@@ -1,12 +1,12 @@
 {
   "name": "jerff.core",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Модуль заготовка для битрикс маркеплейса",
   "main": "gulpfile.js",
   "scripts": {
     "build": "./node_modules/.bin/gulp",
     "release": "./node_modules/.bin/gulp release",
-    "last_version": "./node_modules/.bin/gulp build_last_version",
+    "last_version": "./node_modules/.bin/gulp last_version",
     "build_update": "./node_modules/.bin/gulp build_update"
   },
   "repository": {
