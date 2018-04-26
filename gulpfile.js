@@ -21,4 +21,4 @@ gulp.task('last_version', build.last_version);
 gulp.task('build_update', build.update);
 
 // Дефолтная задача. Собирает все по очереди
-gulp.task('default', gulp.series('release'));
+gulp.task('default', gulp.series('last_version'));
