@@ -6,7 +6,7 @@
 
 ## Сборка для маркеплейса
 - установить сборщик модуля на NodeJs `npm install && npm install gulp-build-bitrix-modul --save`
-- используется модуль на galp 4 [gulp-build-bitrix-modul](https://www.npmjs.com/package/gulp-build-bitrix-modul)
+- используется модуль на gulp 4 [gulp-build-bitrix-modul](https://www.npmjs.com/package/gulp-build-bitrix-modul)
 - `npm run build` - собирает всю сборку для маркеплейса
 - `npm run release` - собирает utf-8 и cp1251 архивы
 - `npm run last_version` - собирает текущею версии модуля для маркеплейса
