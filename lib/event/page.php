@@ -1,6 +1,6 @@
 <?
 
-namespace Project\Core\Event;
+namespace Jerff\Core\Event;
 
 class Page {
 

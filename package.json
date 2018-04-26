@@ -1,25 +1,29 @@
 {
-  "name": "project.core",
+  "name": "jerff.core",
   "version": "1.0.0",
-  "description": "Модуль core",
+  "description": "Модуль заготовка для битрикс маркеплейса",
   "main": "gulpfile.js",
   "scripts": {
-    "gulp": "./node_modules/.bin/gulp",
-    "build_last_version": "./node_modules/.bin/gulp build_last_version"
+    "build": "./node_modules/.bin/gulp",
+    "release": "./node_modules/.bin/gulp release",
+    "last_version": "./node_modules/.bin/gulp build_last_version",
+    "build_update": "./node_modules/.bin/gulp build_update"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/project-tm/project.ajax.git"
+    "url": "git+https://bitbucket.org/project-marketplace/jerff.ajax.git"
   },
   "keywords": [
-    "ajax"
+    "битрикс модуль для маркетплейс",
+    "bitrix modul marketplace",
+    "заготовка модуля"
   ],
   "author": "Alexej Popov",
   "license": "ISC",
   "bugs": {
-    "url": "https://bitbucket.org/project-tm/project.ajax/issues"
+    "url": "https://bitbucket.org/project-marketplace/jerff.ajax/issues"
   },
-  "homepage": "https://bitbucket.org/project-tm/project.ajax#readme",
+  "homepage": "https://bitbucket.org/project-marketplace/jerff.ajax#readme",
   "dependencies": {
     "gulp": "^4.0.0",
     "gulp-build-bitrix-modul": "^1.1.0"

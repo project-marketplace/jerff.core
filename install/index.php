@@ -9,9 +9,9 @@ use Bitrix\Main\Localization\Loc,
 
 IncludeModuleLangFile(__FILE__);
 
-class project_core extends CModule {
+class jerff_core extends cmodule {
 
-    public $MODULE_ID = 'project.core';
+    public $MODULE_ID = 'jerff.core';
     public $MODULE_NAME;
     public $MODULE_DESCRIPTION;
     public $MODULE_VERSION;
@@ -20,11 +20,11 @@ class project_core extends CModule {
     use Modules\Install;
 
     function __construct() {
-        $this->setParam(__DIR__, 'PROJECT_CORE');
-        $this->MODULE_NAME = Loc::getMessage('PROJECT_CORE_NAME');
-        $this->MODULE_DESCRIPTION = Loc::getMessage('PROJECT_CORE_DESCRIPTION');
-        $this->PARTNER_NAME = Loc::getMessage('PROJECT_CORE_PARTNER_NAME');
-        $this->PARTNER_URI = Loc::getMessage('PROJECT_CORE_PARTNER_URI');
+        $this->setParam(__DIR__, 'JERFF_CORE');
+        $this->MODULE_NAME = Loc::getMessage('JERFF_CORE_NAME');
+        $this->MODULE_DESCRIPTION = Loc::getMessage('JERFF_CORE_DESCRIPTION');
+        $this->PARTNER_NAME = Loc::getMessage('JERFF_CORE_PARTNER_NAME');
+        $this->PARTNER_URI = Loc::getMessage('JERFF_CORE_PARTNER_URI');
     }
 
     public function DoInstall() {
@@ -40,11 +40,11 @@ class project_core extends CModule {
      */
 
     public function InstallEvent() {
-        $this->registerEventHandler('main', 'OnPageStart', '\Project\Core\Event\Page', 'OnPageStart');
+        $this->registerEventHandler('main', 'OnPageStart', '\Jerff\Core\Event\Page', 'OnPageStart');
     }
 
     public function UnInstallEvent() {
-        $this->unRegisterEventHandler('main', 'OnPageStart', '\Project\Core\Event\Page', 'OnPageStart');
+        $this->unRegisterEventHandler('main', 'OnPageStart', '\Jerff\Core\Event\Page', 'OnPageStart');
     }
 
 }
