@@ -26,6 +26,6 @@
   "homepage": "https://bitbucket.org/project-marketplace/jerff.ajax#readme",
   "dependencies": {
     "gulp": "^4.0.0",
-    "gulp-build-bitrix-modul": "^1.1.0"
+    "gulp-build-bitrix-modul": "^1.7.0"
   }
 }
