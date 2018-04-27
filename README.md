@@ -1,15 +1,15 @@
-# Модуль заготовка для битрикс маркеплейс, [выложен в маркеплейс](https://marketplace.1c-bitrix.ru/solutions/jerff.core/)
+# Модуль заготовка для битрикс маркетплейс
 
 - модуль можно использовать:
     - как основу для других модулей
-    - как заготовку для битрикс маркеплейс
+    - как заготовку для битрикс маркетплейс
 
-## Сборка для маркеплейса
+## Сборка для маркетплейса
 - установить сборщик модуля на NodeJs `npm install && npm install gulp-build-bitrix-modul --save`
-- используется модуль на gulp 4 [gulp-build-bitrix-modul](https://www.npmjs.com/package/gulp-build-bitrix-modul)
-- `npm run build` - собирает всю сборку для маркеплейса
+- используется модуль на galp 4 [gulp-build-bitrix-modul](https://www.npmjs.com/package/gulp-build-bitrix-modul)
+- `npm run build` - собирает всю сборку для маркетплейса
 - `npm run release` - собирает utf-8 и cp1251 архивы
-- `npm run last_version` - собирает текущею версии модуля для маркеплейса
+- `npm run last_version` - собирает текущею версии модуля для маркетплейса
 - `npm run release` - собирает обновления модуля
 
 ## Обновления

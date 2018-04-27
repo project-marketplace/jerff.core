@@ -1,7 +1,7 @@
 {
   "name": "jerff.core",
   "version": "3.0.0",
-  "description": "Модуль заготовка для битрикс маркеплейса",
+  "description": "Модуль заготовка для битрикс маркетплейса",
   "main": "gulpfile.js",
   "scripts": {
     "build": "./node_modules/.bin/gulp",
@@ -26,6 +26,6 @@
   "homepage": "https://bitbucket.org/project-marketplace/jerff.core#readme",
   "dependencies": {
     "gulp": "^4.0.0",
-    "gulp-build-bitrix-modul": "^1.7.0"
+    "gulp-build-bitrix-modul": "^1.7.2"
   }
 }
