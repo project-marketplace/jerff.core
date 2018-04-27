@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/project-marketplace/jerff.ajax.git"
+    "url": "git+https://bitbucket.org/project-marketplace/jerff.core.git"
   },
   "keywords": [
     "битрикс модуль для маркетплейс",
@@ -21,9 +21,9 @@
   "author": "Alexej Popov",
   "license": "ISC",
   "bugs": {
-    "url": "https://bitbucket.org/project-marketplace/jerff.ajax/issues"
+    "url": "https://bitbucket.org/project-marketplace/jerff.core/issues"
   },
-  "homepage": "https://bitbucket.org/project-marketplace/jerff.ajax#readme",
+  "homepage": "https://bitbucket.org/project-marketplace/jerff.core#readme",
   "dependencies": {
     "gulp": "^4.0.0",
     "gulp-build-bitrix-modul": "^1.7.0"
