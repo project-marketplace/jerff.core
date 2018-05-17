@@ -1,4 +1,6 @@
 # Модуль заготовка для битрикс маркеплейс, [выложен в маркеплейс](https://marketplace.1c-bitrix.ru/solutions/jerff.core/)
+- [код на bitbucket](https://bitbucket.org/project-marketplace/jerff.core.git)
+- [код на github](https://github.com/project-marketplace/jerff.core.git)
 
 - модуль можно использовать:
     - как основу для других модулей
